@@ -5,17 +5,23 @@ from django.contrib.auth.models import User
 class Category(models.Model):
     name = models.CharField(max_length=256)
 
+    def __str__(self):
+        return self.name
+
 
 class Institution(models.Model):
     CHARITY_TYPE = (
-        (1, 'fundacja'),
-        (2, 'organizacja pozarządowa'),
-        (3, 'zbiórka lokalna')
+        ('1', 'fundacja'),
+        ('2', 'organizacja pozarządowa'),
+        ('3', 'zbiórka lokalna')
     )
     name = models.CharField(max_length=256)
     description = models.TextField()
     type = models.CharField(max_length=50, choices=CHARITY_TYPE, default=3)
     categories = models.ManyToManyField('Category')
+
+    def __str__(self):
+        return self.name
 
 
 class Donation(models.Model):

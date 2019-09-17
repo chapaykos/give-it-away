@@ -1,0 +1,11 @@
+Pola mówiące o liczbie oddanych worków oraz liczbie wspartych organizacji powinny być wyświetlane dynamicznie na podstawie bazy danych. W tym celu:
+- zmodyfikuj szablon index.html
+- dodaj liczenie worków
+- dodaj liczenie wspartych organizacji
+- przekaż dane do szablonu
+- dodaj ręcznie do tabeli jakieś dane i sprawdź czy wszystko działa poprawnie
+
+Dla zalogowanego użytkownika, pobrać dane z bazy danych:
+    pętlą zebrać sumarną ilość worków z modelu Donation
+        w prypadku zalogowanego użytkownika - tylko jego worki
+    sprawdzić, ile unikalnych organizacji było wsparte przez użytkownika
