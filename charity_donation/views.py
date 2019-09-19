@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from charity_donation import models
+from django.contrib.auth.models import User
 
 
 # Create your views here.

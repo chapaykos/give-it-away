@@ -12,6 +12,35 @@
 
 {% block header %}
 {% endblock header %}
+<nav class="container container--70">
+    <ul class="nav--actions">
+        {% if user.username %}
+            <li class="logged-user">
+                Witaj {{user.username}}
+                <ul class="dropdown">
+                    <li><a href="#">Profil</a></li>
+                    <li><a href="#">Moje zbiórki</a></li>
+                    <li><a href="#">Wyloguj</a></li>
+                </ul>
+            </li>
+        {% else %}
+            <li><a href="" class="btn btn--small btn--without-border">Zaloguj</a></li>
+            <li><a href="#" class="btn btn--small btn--highlighted">Załóż konto</a></li>
+        {% endif %}
+    </ul>
+
+    <ul>
+        <li><a href="" class="btn btn--without-border active">Start</a></li>
+        <li><a href="#steps" class="btn btn--without-border">O co chodzi?</a></li>
+        <li><a href="#about-us" class="btn btn--without-border">O nas</a></li>
+        <li><a href="#help" class="btn btn--without-border">Fundacje i organizacje</a></li>
+        {% if request. %}<li><a href="{% url 'donation' %}.html" class="btn btn--without-border">Przekaż dary</a></li>{% endif %}
+        <li><a href="#contact" class="btn btn--without-border">Kontakt</a></li>
+    </ul>
+</nav>
+
+{% block header_content %}
+{% endblock header_content %}
 
 {% block content %}
 {% endblock content %}
@@ -32,7 +61,8 @@
         <span class="bottom-line--copy">Copyright &copy; 2019</span>
         <div class="bottom-line--icons">
             <a href="#" class="btn btn--small"><img src="{% static 'charity_donation/images/icon-facebook.svg' %}"/></a>
-            <a href="#" class="btn btn--small"><img src="{% static 'charity_donation/images/icon-instagram.svg' %}"/></a>
+            <a href="#" class="btn btn--small"><img
+                    src="{% static 'charity_donation/images/icon-instagram.svg' %}"/></a>
         </div>
     </div>
 </footer>

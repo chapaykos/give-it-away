@@ -2,32 +2,18 @@
 {% load static %}
 {% block header %}
     <header class="header--main-page">
-        <nav class="container container--70">
-            <ul class="nav--actions">
-                <li><a href="" class="btn btn--small btn--without-border">Zaloguj</a></li>
-                <li><a href="#" class="btn btn--small btn--highlighted">Załóż konto</a></li>
-            </ul>
-
-            <ul>
-                <li><a href="" class="btn btn--without-border active">Start</a></li>
-                <li><a href="#steps" class="btn btn--without-border">O co chodzi?</a></li>
-                <li><a href="#about-us" class="btn btn--without-border">O nas</a></li>
-                <li><a href="#help" class="btn btn--without-border">Fundacje i organizacje</a></li>
-                <li><a href="{% url 'donation' %}.html" class="btn btn--without-border">Przekaż dary</a></li>
-                <li><a href="#contact" class="btn btn--without-border">Kontakt</a></li>
-            </ul>
-        </nav>
-
-        <div class="slogan container container--90">
-            <div class="slogan--item">
-                <h1>
-                    Zacznij pomagać!<br/>
-                    Oddaj niechciane rzeczy w zaufane ręce
-                </h1>
-            </div>
-        </div>
-    </header>
 {% endblock header %}
+{% block header_content %}
+    <div class="slogan container container--90">
+        <div class="slogan--item">
+            <h1>
+                Zacznij pomagać!<br/>
+                Oddaj niechciane rzeczy w zaufane ręce
+            </h1>
+        </div>
+    </div>
+    </header>
+{% endblock header_content %}
 
 {% block content %}
     <section id="stats" class="stats">
@@ -40,7 +26,7 @@
             </div>
 
             <div class="stats--item">
-                <em>{{institutions}}</em>
+                <em>{{ institutions }}</em>
                 <h3>Wspartych organizacji</h3>
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam magnam, sint nihil cupiditate
                     quas quam.</p>
@@ -83,9 +69,11 @@
             <h2>O nas</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas vitae animi rem pariatur incidunt
                 libero optio esse quisquam illo omnis.</p>
-            <img src="{% static 'charity_donation/images/signature.svg' %}" class="about-us--text-signature" alt="Signature"/>
+            <img src="{% static 'charity_donation/images/signature.svg' %}" class="about-us--text-signature"
+                 alt="Signature"/>
         </div>
-        <div class="about-us--image"><img src="{% static 'charity_donation/images/about-us.jpg' %}" alt="People in circle"/></div>
+        <div class="about-us--image"><img src="{% static 'charity_donation/images/about-us.jpg' %}"
+                                          alt="People in circle"/></div>
     </section>
 
     <section id="help" class="help">
