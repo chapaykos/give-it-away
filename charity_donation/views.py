@@ -35,7 +35,9 @@ class AddDonation(LoginRequiredMixin, View):
 
     def get(self, request):
         categories = models.Category.objects.all()
-        return render(request, 'charity_donation/form.html', {'categories': categories})
+        institutions = models.Institution.objects.all()
+        return render(request, 'charity_donation/form.html', {'categories': categories,
+                                                              'institutions': institutions})
 
 
 class Login(View):
