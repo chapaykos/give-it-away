@@ -61,7 +61,7 @@
             </div>
         </div>
 
-        <a href="#" class="btn btn--large">Załóż konto</a>
+        <a href="{% url 'register' %}" class="btn btn--large">Załóż konto</a>
     </section>
 
     <section id="about-us" class="about-us">
@@ -91,39 +91,18 @@
                 się zajmują, komu pomagają i czego potrzebują.</p>
 
             <ul class="help--slides-items">
-                <li>
-                    <div class="col">
-                        <div class="title">Fundacja "Dbam o Zdrowie"</div>
-                        <div class="subtitle">Cel i misja: Pomoc dzieciom z ubogich rodzin.</div>
-                    </div>
-
-                    <div class="col">
-                        <div class="text">ubrania, jedzenie, sprzęt AGD, meble, zabawki</div>
-                    </div>
-                </li>
-
-                <li>
-                    <div class="col">
-                        <div class="title">Fundacja “Dla dzieci"</div>
-                        <div class="subtitle">Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej.
+                {% for foundation in foundations %}
+                    <li>
+                        <div class="col">
+                            <div class="title">Fundacja "{{ foundation.name }}"</div>
+                            <div class="subtitle">Cel i misja: {{ foundation.description }}.</div>
                         </div>
-                    </div>
 
-                    <div class="col">
-                        <div class="text">ubrania, meble, zabawki</div>
-                    </div>
-                </li>
-
-                <li>
-                    <div class="col">
-                        <div class="title">Fundacja “Bez domu”</div>
-                        <div class="subtitle">Cel i misja: Pomoc dla osób nie posiadających miejsca zamieszkania</div>
-                    </div>
-
-                    <div class="col">
-                        <div class="text">ubrania, jedzenie, ciepłe koce</div>
-                    </div>
-                </li>
+                        <div class="col">
+                            <div class="text"> {% for category in foundation.categories.all %}{{ category.name }} {% endfor %}</div>
+                        </div>
+                    </li>
+                {% endfor %}
             </ul>
             <!-- Pagination
             <ul class="help--slides-pagination">
@@ -143,60 +122,28 @@
                 quos suscipit corporis!
             </p>
             <ul class="help--slides-items">
-                <li>
-                    <div class="col">
-                        <div class="title">Organizacja 1</div>
-                        <div class="subtitle">Lorem ipsum dolor sit amet consectetur.</div>
-                    </div>
+                {% for non_gov_orgs in non_gov_org %}
+                    <li>
+                        <div class="col">
+                            <div class="title">Organizacja '{{ non_gov_orgs.name }}'</div>
+                            <div class="subtitle">{{ non_gov_orgs.description }}</div>
+                        </div>
 
-                    <div class="col">
-                        <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                    </div>
-                </li>
-
-                <li>
-                    <div class="col">
-                        <div class="title">Organizacja 2</div>
-                        <div class="subtitle">Lorem ipsum dolor sit amet consectetur.</div>
-                    </div>
-
-                    <div class="col">
-                        <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                    </div>
-                </li>
-
-                <li>
-                    <div class="col">
-                        <div class="title">Organizacja 3</div>
-                        <div class="subtitle">Lorem ipsum dolor sit amet consectetur.</div>
-                    </div>
-
-                    <div class="col">
-                        <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                    </div>
-                </li>
-
-                <li>
-                    <div class="col">
-                        <div class="title">Organizacja 4</div>
-                        <div class="subtitle">Lorem ipsum dolor sit amet consectetur.</div>
-                    </div>
-
-                    <div class="col">
-                        <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                    </div>
-                </li>
+                        <div class="col">
+                            <div class="text">{% for category in non_gov_orgs.categories.all %}{{ category.name }} {% endfor %}</div>
+                        </div>
+                    </li>
+                {% endfor %}
             </ul>
-
-            <!-- Pagination
-            <ul class="help--slides-pagination">
-              <li><a href="#" class="btn btn--small btn--without-border active" data-page="1">1</a></li>
-              <li><a href="#" class="btn btn--small btn--without-border" data-page="2">2</a></li>
-              <li><a href="#" class="btn btn--small btn--without-border" data-page="3">3</a></li>
-              <li><a href="#" class="btn btn--small btn--without-border" data-page="4">4</a></li>
-              <li><a href="#" class="btn btn--small btn--without-border" data-page="5">5</a></li>
-            </ul>
-            -->
+                <!-- Pagination
+                <ul class="help--slides-pagination">
+                  <li><a href="#" class="btn btn--small btn--without-border active" data-page="1">1</a></li>
+                  <li><a href="#" class="btn btn--small btn--without-border" data-page="2">2</a></li>
+                  <li><a href="#" class="btn btn--small btn--without-border" data-page="3">3</a></li>
+                  <li><a href="#" class="btn btn--small btn--without-border" data-page="4">4</a></li>
+                  <li><a href="#" class="btn btn--small btn--without-border" data-page="5">5</a></li>
+                </ul>
+                -->
         </div>
 
         <!-- SLIDE 3 -->
@@ -204,29 +151,19 @@
             <p>Lorem ipsum dolor sit amet, his ocurreret persequeris ea, ad utinam laudem duo. Verterem adipisci
                 partiendo eos ne, ea his reque quaeque recteque, ne quo lobortis intellegam.</p>
             <ul class="help--slides-items">
-                <li>
-                    <div class="col">
-                        <div class="title">Lokalna zbiórka 1</div>
-                        <div class="subtitle">Lorem ipsum dolor sit amet consectetur.</div>
-                    </div>
+                {% for local_charity in local_charity %}
+                    <li>
+                        <div class="col">
+                            <div class="title">Lokalna zbiórka '{{ local_charity.name }}'</div>
+                            <div class="subtitle">{{ local_charity.description }}</div>
+                        </div>
 
-                    <div class="col">
-                        <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                    </div>
-                </li>
-
-                <li>
-                    <div class="col">
-                        <div class="title">Lokalna zbiórka 2</div>
-                        <div class="subtitle">Lorem ipsum dolor sit amet consectetur.</div>
-                    </div>
-
-                    <div class="col">
-                        <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                    </div>
-                </li>
+                        <div class="col">
+                            <div class="text">{% for category in local_charity.categories.all %}{{ category.name }} | {% endfor %}</div>
+                        </div>
+                    </li>
+                {% endfor %}
             </ul>
-
             <!-- Pagination
             <ul class="help--slides-pagination">
               <li><a href="#" class="btn btn--small btn--without-border active" data-page="1">1</a></li>
