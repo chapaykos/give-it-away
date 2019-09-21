@@ -4,6 +4,7 @@ from charity_donation import models
 from django.contrib.auth.models import User
 
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
 
 
 # Create your views here.
@@ -30,19 +31,28 @@ class LandingPage(View):
 
 class AddDonation(View):
     def get(self, request):
-
         return render(request, 'charity_donation/form.html')
 
 
 class Login(View):
     def get(self, request):
-
         return render(request, 'charity_donation/login.html')
+
+    def post(self, request):
+        username = request.POST.get('email')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('index')
+        else:
+            return redirect('register')
 
 
 class Register(View):
     def get(self, request):
         return render(request, 'charity_donation/register.html')
+
     def post(self, request):
         name = request.POST.get('name')
         surname = request.POST.get('surname')
