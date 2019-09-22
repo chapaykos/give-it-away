@@ -36,3 +36,6 @@ class Donation(models.Model):
     pick_up_time = models.TimeField()
     pick_up_comment = models.TextField()
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True)
+
+    def __str__(self):
+        return f"Donation #{self.id} for '{self.institution}' by {self.user}"

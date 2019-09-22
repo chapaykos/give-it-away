@@ -18,7 +18,7 @@
             <li class="logged-user">
                 Witaj {{user.username}}
                 <ul class="dropdown">
-                    <li><a href="#">Profil</a></li>
+                    <li><a href="{% url 'profile' %}">Profil</a></li>
                     <li><a href="#">Moje zbiórki</a></li>
                     <li><a href="{% url 'logout' %}">Wyloguj</a></li>
                     {% if request.user.is_superuser %}<li><a href="/admin/">Panel Administracyjny</a></li>{% endif %}

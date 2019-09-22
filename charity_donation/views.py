@@ -75,3 +75,10 @@ class Register(View):
             user = User.objects.create_user(username=email, password=password, first_name=name, last_name=surname)
             user.save()
         return redirect('login')
+
+class Profile(LoginRequiredMixin, View):
+    login_url = 'login'
+
+    def get(self, request):
+        donations = models.Donation.objects.filter(user=request.user)
+        return render(request, 'charity_donation/profile.html', {'donations': donations})

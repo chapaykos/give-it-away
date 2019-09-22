@@ -1,0 +1,27 @@
+{% extends 'charity_donation/base.html' %}
+{% load static %}
+{% block header %}
+    <header>
+{% endblock header %}
+{% block header_content %}
+    </header>
+{% endblock %}
+
+{% block content %}
+    <section class="login-page">
+        <h2>Profil użytkownika {{ user.username }}</h2>
+        <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+        <h1>email: {{ user.email }}</h1>
+
+        <div class="container">
+            <h2>Twoje dary:</h2>
+            {% for donation in donations %}
+                <h3>Dar dla '{{ donation.institution }}'</h3>
+                <p>Ilość worków: {{ donation.quantity }}</p>
+                <p>Co było przekazane: {% for category in donation.categories.all %}{{ category.name }} | {% endfor %}</p>
+                <p>Kiedy było/będzie odebrane: {{ donation.pick_up_date }} o {{ donation.pick_up_time }}</p>
+            {% endfor %}
+        </div>
+    </section>
+
+{% endblock content %}
