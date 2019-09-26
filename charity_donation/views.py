@@ -36,8 +36,12 @@ class AddDonation(LoginRequiredMixin, View):
     def get(self, request):
         categories = models.Category.objects.all()
         institutions = models.Institution.objects.all()
+        in_cat_ids = []
+        for institution in institutions:
+            in_cat_ids.append(institution.category_ids())
         return render(request, 'charity_donation/form.html', {'categories': categories,
-                                                              'institutions': institutions})
+                                                              'institutions': institutions,
+                                                              'in_cat_ids': in_cat_ids})
 
 
 class Login(View):
@@ -75,6 +79,7 @@ class Register(View):
             user = User.objects.create_user(username=email, password=password, first_name=name, last_name=surname)
             user.save()
         return redirect('login')
+
 
 class Profile(LoginRequiredMixin, View):
     login_url = 'login'
