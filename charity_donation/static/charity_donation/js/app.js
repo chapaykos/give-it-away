@@ -240,7 +240,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // INSTITUTION FILTER
             const selectedCategoryIDs = [...document.querySelectorAll("div[data-step='1'] input:checked")].map(input => input.value);
-
+            for (sel of selectedCategoryIDs) {
+                console.log(sel.nextElementSibling.nextElementSibling.innerText);
+            }
             const instDivs = document.querySelectorAll("div[data-step='3'] div.form-group--checkbox");
 
             for (let div of instDivs) {
@@ -255,6 +257,33 @@ document.addEventListener("DOMContentLoaded", function () {
                     div.style.display = "block";
                 }
             }
+
+            // BAG AMOUNT - STEP 2
+            const formQuantity = document.querySelector("input[name='bags']");
+
+            // FORM FIELDS FROM STEP 4
+            const formAddress = document.querySelector("div[data-step='4'] input[name='address']");
+            const formCity = document.querySelector("div[data-step='4'] input[name='city']");
+            const formPostcode = document.querySelector("div[data-step='4'] input[name='postcode']");
+            const formPhone = document.querySelector("div[data-step='4'] input[name='phone']");
+            const formDate = document.querySelector("div[data-step='4'] input[name='data']");
+            const formTime = document.querySelector("div[data-step='4'] input[name='time']");
+            const formComment = document.querySelector("div[data-step='4'] textarea[name='more_info']");
+            const formChosenInstitutionID = document.querySelector("input[type='radio']:checked");
+            const formChosenInstitution = formChosenInstitutionID.nextElementSibling.nextElementSibling.firstElementChild;
+
+            // INPUT FORM FIELDS TO FORM SUMMARY - STEP 5
+            document.querySelector("#final-summary").innerText = `${formQuantity.value} worki ${selectedCategories.toString()}`;
+            document.querySelector("#final-institution").innerText = `Dla fundacji - ${formChosenInstitution.innerText}`;
+
+            document.querySelector("#final-address").innerText = formAddress.value;
+            document.querySelector("#final-city").innerText = formCity.value;
+            document.querySelector("#final-postcode").innerText = formPostcode.value;
+            document.querySelector("#final-phone").innerText = formPhone.value;
+            document.querySelector("#final-date").innerText = formDate.value;
+            document.querySelector("#final-time").innerText = formTime.value;
+            document.querySelector("#final-comment").innerText = formComment.value;
+
         }
 
         /**
