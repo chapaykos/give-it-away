@@ -15,12 +15,30 @@
 
         <div class="container">
             <h2>Twoje dary:</h2>
-            {% for donation in donations %}
+            {% for donation in donations_not_taken %}
                 <h3>Dar dla '{{ donation.institution }}'</h3>
                 <p>Ilość worków: {{ donation.quantity }}</p>
-                <p>Co było przekazane: {% for category in donation.categories.all %}{{ category.name }} | {% endfor %}</p>
+                <p>Co było przekazane:
+                    {% for category in donation.categories.all %}{{ category.name }} | {% endfor %}</p>
                 <p>Kiedy było/będzie odebrane: {{ donation.pick_up_date }} o {{ donation.pick_up_time }}</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <p>Czy dar został już odebrany?
+                        <input type="text" name="donation_id" value="{{ donation.id }}" hidden>
+                        <input type="submit" value="Dar odebrany">
+                    </p>
+                </form>
+
             {% endfor %}
+            <h2>Odebrane dary:</h2>
+            <section style="color: #737373">
+                {% for donation in donations_taken %}
+                    <h3>Dar dla '{{ donation.institution }}'</h3>
+                    <p>Ilość worków: {{ donation.quantity }}</p>
+                    <p>Co było przekazane:
+                        {% for category in donation.categories.all %}{{ category.name }} | {% endfor %}</p>
+                {% endfor %}
+            </section>
         </div>
     </section>
 

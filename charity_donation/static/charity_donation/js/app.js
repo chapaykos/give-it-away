@@ -303,16 +303,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
 
-        /**
-         * Submit form
-         *
-         * TODO: validation, send data to server
-         */
-        submit(e) {
-            e.preventDefault();
-            this.currentStep++;
-            this.updateForm();
-        }
+        // /**
+        //  * Submit form
+        //  *
+        //  * TODO: validation, send data to server
+        //  */
+        // submit(e) {
+        //     e.preventDefault();
+        //     this.currentStep++;
+        //     this.updateForm();
+        // }
     }
 
     const form = document.querySelector(".form--steps");

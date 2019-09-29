@@ -43,6 +43,31 @@ class AddDonation(LoginRequiredMixin, View):
                                                               'institutions': institutions,
                                                               'in_cat_ids': in_cat_ids})
 
+    def post(self, request):
+        address = request.POST.get('address')
+        city = request.POST.get('city')
+        postcode = request.POST.get('postcode')
+        phone = request.POST.get('phone')
+        data = request.POST.get('data')
+        time = request.POST.get('time')
+        more_info = request.POST.get('more_info')
+        bags = request.POST.get('bags')
+        categories = request.POST.getlist('categories')
+        institution_id = int(request.POST.get('organization'))
+        institution = models.Institution.objects.get(pk=institution_id)
+        donation = models.Donation.objects.create(quantity=bags, institution=institution,
+                                                  address=address, phone_number=phone, city=city, zip_code=postcode,
+                                                  pick_up_date=data, pick_up_time=time, pick_up_comment=more_info,
+                                                  user=request.user)
+        donation.categories.set(categories)
+
+        return redirect('donation_success')
+
+
+class DonationSuccess(View):
+    def get(self, request):
+        return render(request, 'charity_donation/form-confirmation.html')
+
 
 class Login(View):
     def get(self, request):
@@ -85,5 +110,15 @@ class Profile(LoginRequiredMixin, View):
     login_url = 'login'
 
     def get(self, request):
-        donations = models.Donation.objects.filter(user=request.user)
-        return render(request, 'charity_donation/profile.html', {'donations': donations})
+        donations_taken = models.Donation.objects.filter(user=request.user, is_taken=True)
+        donations_not_taken = models.Donation.objects.filter(user=request.user, is_taken=False)
+        return render(request, 'charity_donation/profile.html', {'donations_taken': donations_taken,
+                                                                 'donations_not_taken': donations_not_taken})
+    def post(self, request):
+        donation_id = request.POST.get('donation_id')
+        donation = models.Donation.objects.get(pk=donation_id)
+        donation.is_taken = True
+        donation.save()
+        return redirect('profile')
+
+
