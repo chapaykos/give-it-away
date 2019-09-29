@@ -99,18 +99,19 @@
                         </div>
 
                         <div class="col">
-                            <div class="text"> {% for category in foundation.categories.all %}{{ category.name }} {% endfor %}</div>
+                            <div class="text">
+                                {% for category in foundation.categories.all %}{{ category.name }} {% endfor %}</div>
                         </div>
                     </li>
                 {% endfor %}
             </ul>
-            <!-- Pagination
+
             <ul class="help--slides-pagination">
               <li><a href="#" class="btn btn--small btn--without-border active" data-page="1">1</a></li>
               <li><a href="#" class="btn btn--small btn--without-border" data-page="2">2</a></li>
               <li><a href="#" class="btn btn--small btn--without-border" data-page="3">3</a></li>
             </ul>
-            -->
+
         </div>
 
 
@@ -130,20 +131,21 @@
                         </div>
 
                         <div class="col">
-                            <div class="text">{% for category in non_gov_orgs.categories.all %}{{ category.name }} {% endfor %}</div>
+                            <div class="text">
+                                {% for category in non_gov_orgs.categories.all %}{{ category.name }} {% endfor %}</div>
                         </div>
                     </li>
                 {% endfor %}
             </ul>
-                <!-- Pagination
-                <ul class="help--slides-pagination">
-                  <li><a href="#" class="btn btn--small btn--without-border active" data-page="1">1</a></li>
-                  <li><a href="#" class="btn btn--small btn--without-border" data-page="2">2</a></li>
-                  <li><a href="#" class="btn btn--small btn--without-border" data-page="3">3</a></li>
-                  <li><a href="#" class="btn btn--small btn--without-border" data-page="4">4</a></li>
-                  <li><a href="#" class="btn btn--small btn--without-border" data-page="5">5</a></li>
-                </ul>
-                -->
+
+            <ul class="help--slides-pagination">
+                <li><a href="#" class="btn btn--small btn--without-border active" data-page="1">1</a></li>
+                <li><a href="#" class="btn btn--small btn--without-border" data-page="2">2</a></li>
+                <li><a href="#" class="btn btn--small btn--without-border" data-page="3">3</a></li>
+                <li><a href="#" class="btn btn--small btn--without-border" data-page="4">4</a></li>
+                <li><a href="#" class="btn btn--small btn--without-border" data-page="5">5</a></li>
+            </ul>
+
         </div>
 
         <!-- SLIDE 3 -->
@@ -159,17 +161,18 @@
                         </div>
 
                         <div class="col">
-                            <div class="text">{% for category in local_charity.categories.all %}{{ category.name }} | {% endfor %}</div>
+                            <div class="text">{% for category in local_charity.categories.all %}{{ category.name }}
+                                | {% endfor %}</div>
                         </div>
                     </li>
                 {% endfor %}
             </ul>
-            <!-- Pagination
+
             <ul class="help--slides-pagination">
               <li><a href="#" class="btn btn--small btn--without-border active" data-page="1">1</a></li>
               <li><a href="#" class="btn btn--small btn--without-border" data-page="2">2</a></li>
             </ul>
-            -->
+
         </div>
     </section>
 {% endblock content %}
