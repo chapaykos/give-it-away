@@ -240,8 +240,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // INSTITUTION FILTER
             const selectedCategoryIDs = [...document.querySelectorAll("div[data-step='1'] input:checked")].map(input => input.value);
-            for (sel of selectedCategoryIDs) {
-                console.log(sel.nextElementSibling.nextElementSibling.innerText);
+            const selectedCategoryIDsList = [...document.querySelectorAll("div[data-step='1'] input:checked")];
+            const selectedCategories = [];
+            for (let sel of selectedCategoryIDsList) {
+                selectedCategories.push(sel.nextElementSibling.nextElementSibling.innerText);
             }
             const instDivs = document.querySelectorAll("div[data-step='3'] div.form-group--checkbox");
 
@@ -272,8 +274,23 @@ document.addEventListener("DOMContentLoaded", function () {
             const formChosenInstitutionID = document.querySelector("input[type='radio']:checked");
             const formChosenInstitution = formChosenInstitutionID.nextElementSibling.nextElementSibling.firstElementChild;
 
+
+            // proper "worki" word
+            function bagWord(bagAmount) {
+                if (bagAmount.value[bagAmount.value.length - 1] == 0 || bagAmount.value[bagAmount.value.length - 1] >= 5) {
+                    return "worków"
+                } else if (bagAmount.value > 9 && formQuantity.value < 20) {
+                    return "worków"
+                } else if (bagAmount.value[bagAmount.value.length - 1] == 1 || bagAmount.value == 1) {
+                    return "worek"
+                } else {
+                    return "worki"
+                }
+            }
+
+
             // INPUT FORM FIELDS TO FORM SUMMARY - STEP 5
-            document.querySelector("#final-summary").innerText = `${formQuantity.value} worki ${selectedCategories.toString()}`;
+            document.querySelector("#final-summary").innerText = `${formQuantity.value} ${bagWord(formQuantity)} w kategoriach: ${selectedCategories.toString()}`;
             document.querySelector("#final-institution").innerText = `Dla fundacji - ${formChosenInstitution.innerText}`;
 
             document.querySelector("#final-address").innerText = formAddress.value;
@@ -286,16 +303,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
 
-        /**
-         * Submit form
-         *
-         * TODO: validation, send data to server
-         */
-        submit(e) {
-            e.preventDefault();
-            this.currentStep++;
-            this.updateForm();
-        }
+        // /**
+        //  * Submit form
+        //  *
+        //  * TODO: validation, send data to server
+        //  */
+        // submit(e) {
+        //     e.preventDefault();
+        //     this.currentStep++;
+        //     this.updateForm();
+        // }
     }
 
     const form = document.querySelector(".form--steps");

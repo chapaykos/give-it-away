@@ -1,0 +1,57 @@
+{% extends 'charity_donation/base.html' %}
+{% load static %}
+{% block header %}
+    <header>
+{% endblock header %}
+{% block header_content %}
+    </header>
+{% endblock %}
+
+{% block content %}
+    <section class="login-page">
+        <h2>Ustawienia konta użytkownika {{ user.username }}</h2>
+        <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+        <h1>email: {{ user.email }}</h1>
+    </section>
+    <div class="form--steps-container">
+        <form method="POST">
+            {% csrf_token %}
+            {#        name, last name, email edition#}
+            <label>
+                Username: <input type="text" name="username" value="{{ user.username }}">
+            </label>
+            <label>
+                e-mail:<input type="text" name="email" value="{{ user.email }}">
+            </label>
+            <label>
+                Imię: <input type="text" name="name" value="{{ user.first_name }}">
+            </label>
+            <label>
+                Nazwisko: <input type="text" name="surname" value="{{ user.last_name }}">
+            </label>
+            <label>
+                Wpisz swoje hasło: <input type="password" name="password">
+            </label>
+            <input type="submit" name="update_profile" value="Zaktualizuj">
+        </form>
+        <br>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <p>Zmień swoje hasło:</p>
+            <label>
+                Wpisz swoje stare hasło: <input type="password" name="password_old">
+            </label>
+            <label>
+                Wpisz swoje nowe hasło: <input type="password" name="password_new1">
+            </label>
+            <label>
+                Powtórz nowe hasło: <input type="password" name="password_new2">
+            </label>
+            <input type="submit" name="change_password" value="Zmień Hasło">
+        </form>
+
+
+    </div>
+
+
+{% endblock content %}
